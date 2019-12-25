@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
 
         adapter = new FlowPageViewAdapter(this, getSupportFragmentManager(), newProductList);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer(true));
         pager.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         pager.addOnPageChangeListener(adapter);
@@ -213,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
 
         adapter = new FlowPageViewAdapter(this, getSupportFragmentManager(), products);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer(true));
         pager.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         pager.addOnPageChangeListener(adapter);
