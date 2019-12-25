@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.magody.coverflowwithviewpager.model.coverflow.FlowPageViewLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_container"
+
+    android:layout_width="wrap_content"
+
+    android:layout_height="wrap_content"
+
+
+    android:background="@android:color/transparent"
+
+
+    android:gravity="center"
+
+    android:orientation="vertical"
+    >
+
+    <!--android:background="@android:color/transparent" android:background="@color/colorPrimary"-->
+
+    <ImageView
+
+        android:id="@+id/pagerImg"
+
+        android:layout_width="100dp"
+
+        android:layout_height="100dp"
+
+        android:contentDescription="@string/app_name"
+
+        android:scaleType="fitXY" />
+
+    <TextView
+
+        android:id="@+id/text"
+
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:textColor="#000" />
+
+    <Button
+        android:id="@+id/buttonFragmentItem"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+</com.magody.coverflowwithviewpager.model.coverflow.FlowPageViewLinearLayout>

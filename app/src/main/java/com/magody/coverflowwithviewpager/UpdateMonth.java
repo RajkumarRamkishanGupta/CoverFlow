@@ -1,0 +1,11 @@
+package com.magody.coverflowwithviewpager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public interface UpdateMonth {
+    void  updateMonth(String id, ArrayList<CategoryModel> MonthhashMap);
+    void  updateMonthOfImage(String id);
+
+}
