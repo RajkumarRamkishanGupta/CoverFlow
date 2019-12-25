@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface UpdateMonth {
-    void  updateMonth(String id, ArrayList<CategoryModel> MonthhashMap);
+    void  updateMonth(String id);
     void  updateMonthOfImage(String id);
 
 }

@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         categoryModels.add(new CategoryModel("2019", "1",true));
         categoryModels.add(new CategoryModel("2018", "2",false));
         categoryModels.add(new CategoryModel("2017", "3",false));
-        categoryModels.add(new CategoryModel("2016", "4",false));
+        /*categoryModels.add(new CategoryModel("2016", "4",false));
         categoryModels.add(new CategoryModel("2015", "5",false));
         categoryModels.add(new CategoryModel("2014", "6",false));
         categoryModels.add(new CategoryModel("2013", "7",false));
-        categoryModels.add(new CategoryModel("2012", "8",false));
+        categoryModels.add(new CategoryModel("2012", "8",false));*/
 
 
         listHashMap = new HashMap<>();
@@ -142,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
         ArrayList<CategoryModel> categoryApr = new ArrayList<>();
         categoryApr.add(new CategoryModel("apr", "1",true));
-        categoryApr.add(new CategoryModel("jul", "2",false));
-        categoryApr.add(new CategoryModel("apr", "3",false));
+        //categoryApr.add(new CategoryModel("jul", "2",false));
+        categoryApr.add(new CategoryModel("may", "3",false));
 
         ArrayList<CategoryModel> categoryAug = new ArrayList<>();
         categoryAug.add(new CategoryModel("aug", "1",true));
@@ -154,12 +154,12 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         listHashMap.put("3",categoryAug);
 
         horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get("1"));
-        horizontal_recycler_month.setHasFixedSize(true);
+        //horizontal_recycler_month.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         horizontal_recycler_month.setLayoutManager(layoutManager);
-        /*LinearLayoutManager horizontalLayoutManagaer
+        LinearLayoutManager horizontalLayoutManagaer
                 = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);*/
+        horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_month.setAdapter(horizontalMonthAdapter);
         horizontalMonthAdapter.notifyDataSetChanged();
 
@@ -181,30 +181,23 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
     }*/
 
     @Override
-    public void updateMonth(String id, ArrayList<CategoryModel> monthHashMap) {
+    public void updateMonth(String id) {
+          /*studentDataList.clear();
+          studentDataList.addAll(monthHashMap);
+          horizontalMonthAdapter.notifyDataSetChanged();*/
+        /*ArrayList<CategoryModel> monthHash = new ArrayList<>();
+        monthHash.addAll(listHashMap.get(id));
+        horizontalMonthAdapter.updateYearOfMonth(monthHash);*/
 
-        horizontalMonthAdapter.updateYearOfMonth(monthHashMap);
-
-       /* ArrayList<CategoryModel> monthHash = new ArrayList<>();
-        for (int i = 0; i < monthHashMap.size(); i++) {
-            monthHash.add(monthHashMap.get(i));
-        }
-
-        horizontalMonthAdapter = new HorizontalMonthAdapter(getBaseContext(),monthHash);
+        horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get(id));
+        //horizontal_recycler_month.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         horizontal_recycler_month.setLayoutManager(layoutManager);
-        *//*LinearLayoutManager horizontalLayoutManagaer
+        LinearLayoutManager horizontalLayoutManagaer
                 = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);*//*
+        horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_month.setAdapter(horizontalMonthAdapter);
-        horizontalMonthAdapter.notifyDataSetChanged();*/
-
-        /*LinearLayoutManager horizontalLayoutManagaer
-                = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);*/
-        /*horizontal_recycler_month.setAdapter(horizontalMonthAdapter);
-        horizontalMonthAdapter.notifyDataSetChanged();*/
-   // horizontalMonthAdapter.updateMonth(monthHashMap.get(id));
+        horizontalMonthAdapter.notifyDataSetChanged();
     }
 
     @Override

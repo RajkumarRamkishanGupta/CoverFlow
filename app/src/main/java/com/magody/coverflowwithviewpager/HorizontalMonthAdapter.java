@@ -45,11 +45,15 @@ public class HorizontalMonthAdapter extends RecyclerView.Adapter<HorizontalMonth
         this.context=context;
     }
 
-    public void updateYearOfMonth(ArrayList<CategoryModel> models){
-        ArrayList<CategoryModel> monthHash = new ArrayList<>(models);
-        data.clear();
-        data = monthHash;
-        notifyDataSetChanged();
+    public void updateYearOfMonth(List<CategoryModel> models){
+        try {
+            ArrayList<CategoryModel> monthHash = new ArrayList<>(models);
+            data.clear();
+            data = monthHash;
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

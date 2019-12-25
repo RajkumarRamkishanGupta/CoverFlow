@@ -91,10 +91,13 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
                 }
             });*/
 
+            /*if(position==0) {
+                updateMonth.updateMonth(model.getId(), (ArrayList<CategoryModel>) MonthhashMap.get(model.getId()));
+            }*/
+
         if (model.isSelected()) {
             holder.tvSubCategories.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
             //MainActivity inActivity = new MainActivity();
-            updateMonth.updateMonth(model.getId(), (ArrayList<CategoryModel>) MonthhashMap.get(model.getId()));
             //productDiscriptionWebService(id, model.getId(), Integer.toString(pageSize), Integer.toString(counter));
             // firstLoadDone=false;
             //modelId = model.getId();
@@ -108,6 +111,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
                 //text.setText(holder.txtView.getText().toString());
                 //  Toast.makeText(MainActivity.this,,Toast.LENGTH_SHORT).show();
                 selectCategory(model.getName());
+                updateMonth.updateMonth(model.getId());
                 //productDiscriptionWebService(id,model.getId());
 
             }
