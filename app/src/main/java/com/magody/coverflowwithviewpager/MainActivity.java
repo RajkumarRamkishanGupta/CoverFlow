@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         ArrayList<CategoryModel> categoryAug = new ArrayList<>();
         categoryAug.add(new CategoryModel("aug", "1",true));
         categoryAug.add(new CategoryModel("jul", "2",false));
-        categoryAug.add(new CategoryModel("apr", "3",false));
+        categoryAug.add(new CategoryModel("dec", "3",false));
         listHashMap.put("1",categoryJune);
         listHashMap.put("2",categoryApr);
         listHashMap.put("3",categoryAug);
@@ -189,8 +189,17 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         /*ArrayList<CategoryModel> monthHash = new ArrayList<>();
         monthHash.addAll(listHashMap.get(id));
         horizontalMonthAdapter.updateYearOfMonth(monthHash);*/
-
-        horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get(id));
+        ArrayList<CategoryModel> monthHash = new ArrayList<>();
+        monthHash.addAll(listHashMap.get(id));
+        for (int i = 0; i < monthHash.size(); i++) {
+            if (i==0){
+                monthHash.get(i).setSelected(true);
+            }else {
+                monthHash.get(i).setSelected(false);
+            }
+        }
+        //horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get(id));
+        horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,monthHash);
         //horizontal_recycler_month.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         horizontal_recycler_month.setLayoutManager(layoutManager);
@@ -199,14 +208,41 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_month.setAdapter(horizontalMonthAdapter);
         horizontalMonthAdapter.notifyDataSetChanged();
+
+
+
+
+        //to update image
+        ArrayList<Product> products = new ArrayList<>();
+        for (int i = 0; i <productList.size() ; i++) {
+            if (productList.get(i).getName().equalsIgnoreCase(monthHash.get(0).getId())) {
+                products.add(new Product(productList.get(i).getName(), productList.get(i).getUrlImage()));
+            }
+        }
+
+        sizeOfListElements = products.size();
+        first_page = sizeOfListElements; //if its not the size of the list, then the loops keeps working but not for the first element if we scroll to the left at running the program
+
+
+        adapter = new FlowPageViewAdapter(this, getSupportFragmentManager(), products);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer(true));
+        pager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        pager.addOnPageChangeListener(adapter);
+
+        // Set current item to the middle page so we can fling to both
+        // directions left and right
+        pager.setCurrentItem(0);
+        pager.setOffscreenPageLimit(sizeOfListElements);
     }
 
     @Override
     public void updateMonthOfImage(String id) {
         ArrayList<Product> products = new ArrayList<>();
         for (int i = 0; i <productList.size() ; i++) {
-            if (productList.get(i).getName().equalsIgnoreCase(id))
-            products.add(new Product(id,productList.get(i).getUrlImage()));
+            if (productList.get(i).getName().equalsIgnoreCase(id)) {
+                products.add(new Product(id, productList.get(i).getUrlImage()));
+            }
         }
 
         sizeOfListElements = products.size();
