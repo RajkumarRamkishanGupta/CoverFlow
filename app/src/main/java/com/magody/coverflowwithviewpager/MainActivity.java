@@ -262,4 +262,33 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
         //adapter.updateMonthImage(products);
     }
+    
+    //viewpager 2 coverflow
+      //<!-- crousel -->
+//     <com.saeed.infiniteflow.lib.FinitePagerContainer
+//         android:id="@+id/pager_container"
+//         android:layout_width="match_parent"
+//         android:layout_height="wrap_content"
+//         android:elevation="4dp"
+//         android:scaleType="centerCrop"
+//         android:layout_marginTop="150dp"
+//         android:visibility="visible">
+
+//         <androidx.viewpager2.widget.ViewPager2
+//             android:id="@+id/view_pager"
+//             android:layout_width="210dp"
+//             android:layout_height="210dp"
+//             android:layout_gravity="center"
+//             android:orientation="horizontal" />
+
+//     </com.saeed.infiniteflow.lib.FinitePagerContainer>
+//     pager_container = findViewById(R.id.pager_container);
+//         progressBar = findViewById(R.id.progressBar);
+//         pager = pager_container.getViewPager();
+//      recyclerPagerAdapter = new RecyclerPagerAdapter(MainActivity.this,user.getResult().getYears().get(0).getMonths().get(0).getCards());
+//                                     pager.setAdapter(recyclerPagerAdapter);
+//                                     //
+//                                     pager.setOffscreenPageLimit(user.getResult().getYears().get(0).getMonths().get(0).getCards().size());
+//                                     pager_container.setOverlapSlider(0f,0f,0.2f,0f);
+
 }
