@@ -290,5 +290,25 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 //                                     //
 //                                     pager.setOffscreenPageLimit(user.getResult().getYears().get(0).getMonths().get(0).getCards().size());
 //                                     pager_container.setOverlapSlider(0f,0f,0.2f,0f);
+//recycler adapter to get view of view pager
+    //        holder.flCard.setTag(position);
+//                    collapseView(pager.findViewWithTag(position-1));
+// private void collapseView(View view1){
+//         if(view1 != null){
+//             FrameLayout rlFullDescription = view1.findViewById(R.id.rlFullDescription);
+//             RelativeLayout rlAniTitleDescription = view1.findViewById(R.id.rlAniTitleDescription);
+//             ImageView imageUp = view1.findViewById(R.id.imgUp);
 
+//             if (rlFullDescription.getVisibility()==View.VISIBLE) {
+//                 imageUp.setVisibility(View.VISIBLE);
+//                 Animation slideDown = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_down);
+
+//                 rlAniTitleDescription.startAnimation(slideDown);
+//                 rlAniTitleDescription.setVisibility(View.GONE);
+
+//                 rlFullDescription.startAnimation(slideDown);
+//                 rlFullDescription.setVisibility(View.GONE);
+//             }
+//         }
+//     }
 }
