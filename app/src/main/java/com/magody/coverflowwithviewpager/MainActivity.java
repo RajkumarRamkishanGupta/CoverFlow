@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 //                                     pager.setOffscreenPageLimit(user.getResult().getYears().get(0).getMonths().get(0).getCards().size());
 //                                     pager_container.setOverlapSlider(0f,0f,0.2f,0f);
 //recycler adapter to get view of view pager
-    //        holder.flCard.setTag(position);
+    //        holder.flCard.setTag(position);set tag tp parent layout adapter
 //                    collapseView(pager.findViewWithTag(position-1));
 // private void collapseView(View view1){
 //         if(view1 != null){
