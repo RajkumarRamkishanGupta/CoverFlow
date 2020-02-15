@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         ArrayList<CategoryModel> categoryAug = new ArrayList<>();
         categoryAug.add(new CategoryModel("aug", "1",true));
         categoryAug.add(new CategoryModel("jul", "2",false));
-        categoryAug.add(new CategoryModel("apr", "3",false));
+        categoryAug.add(new CategoryModel("dec", "3",false));
         listHashMap.put("1",categoryJune);
         listHashMap.put("2",categoryApr);
         listHashMap.put("3",categoryAug);
@@ -205,8 +205,17 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         /*ArrayList<CategoryModel> monthHash = new ArrayList<>();
         monthHash.addAll(listHashMap.get(id));
         horizontalMonthAdapter.updateYearOfMonth(monthHash);*/
-
-        horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get(id));
+        ArrayList<CategoryModel> monthHash = new ArrayList<>();
+        monthHash.addAll(listHashMap.get(id));
+        for (int i = 0; i < monthHash.size(); i++) {
+            if (i==0){
+                monthHash.get(i).setSelected(true);
+            }else {
+                monthHash.get(i).setSelected(false);
+            }
+        }
+        //horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,listHashMap.get(id));
+        horizontalMonthAdapter = new HorizontalMonthAdapter(MainActivity.this,monthHash);
         //horizontal_recycler_month.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         horizontal_recycler_month.setLayoutManager(layoutManager);
@@ -215,14 +224,41 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         horizontal_recycler_month.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_month.setAdapter(horizontalMonthAdapter);
         horizontalMonthAdapter.notifyDataSetChanged();
+
+
+
+
+        //to update image
+        ArrayList<Product> products = new ArrayList<>();
+        for (int i = 0; i <productList.size() ; i++) {
+            if (productList.get(i).getName().equalsIgnoreCase(monthHash.get(0).getId())) {
+                products.add(new Product(productList.get(i).getName(), productList.get(i).getUrlImage()));
+            }
+        }
+
+        sizeOfListElements = products.size();
+        first_page = sizeOfListElements; //if its not the size of the list, then the loops keeps working but not for the first element if we scroll to the left at running the program
+
+
+        adapter = new FlowPageViewAdapter(this, getSupportFragmentManager(), products);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer(true));
+        pager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        pager.addOnPageChangeListener(adapter);
+
+        // Set current item to the middle page so we can fling to both
+        // directions left and right
+        pager.setCurrentItem(0);
+        pager.setOffscreenPageLimit(sizeOfListElements);
     }
 
     @Override
     public void updateMonthOfImage(String id) {
         ArrayList<Product> products = new ArrayList<>();
         for (int i = 0; i <productList.size() ; i++) {
-            if (productList.get(i).getName().equalsIgnoreCase(id))
-            products.add(new Product(id,productList.get(i).getUrlImage()));
+            if (productList.get(i).getName().equalsIgnoreCase(id)) {
+                products.add(new Product(id, productList.get(i).getUrlImage()));
+            }
         }
 
         sizeOfListElements = products.size();
@@ -242,4 +278,53 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
         //adapter.updateMonthImage(products);
     }
+    
+    //viewpager 2 coverflow
+      //<!-- crousel -->
+//     <com.saeed.infiniteflow.lib.FinitePagerContainer
+//         android:id="@+id/pager_container"
+//         android:layout_width="match_parent"
+//         android:layout_height="wrap_content"
+//         android:elevation="4dp"
+//         android:scaleType="centerCrop"
+//         android:layout_marginTop="150dp"
+//         android:visibility="visible">
+
+//         <androidx.viewpager2.widget.ViewPager2
+//             android:id="@+id/view_pager"
+//             android:layout_width="210dp"
+//             android:layout_height="210dp"
+//             android:layout_gravity="center"
+//             android:orientation="horizontal" />
+
+//     </com.saeed.infiniteflow.lib.FinitePagerContainer>
+//     pager_container = findViewById(R.id.pager_container);
+//         progressBar = findViewById(R.id.progressBar);
+//         pager = pager_container.getViewPager();
+//      recyclerPagerAdapter = new RecyclerPagerAdapter(MainActivity.this,user.getResult().getYears().get(0).getMonths().get(0).getCards());
+//                                     pager.setAdapter(recyclerPagerAdapter);
+//                                     //
+//                                     pager.setOffscreenPageLimit(user.getResult().getYears().get(0).getMonths().get(0).getCards().size());
+//                                     pager_container.setOverlapSlider(0f,0f,0.2f,0f);
+//recycler adapter to get view of view pager
+    //        holder.flCard.setTag(position);set tag tp parent layout adapter
+//                    collapseView(pager.findViewWithTag(position-1));
+// private void collapseView(View view1){
+//         if(view1 != null){
+//             FrameLayout rlFullDescription = view1.findViewById(R.id.rlFullDescription);
+//             RelativeLayout rlAniTitleDescription = view1.findViewById(R.id.rlAniTitleDescription);
+//             ImageView imageUp = view1.findViewById(R.id.imgUp);
+
+//             if (rlFullDescription.getVisibility()==View.VISIBLE) {
+//                 imageUp.setVisibility(View.VISIBLE);
+//                 Animation slideDown = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_down);
+
+//                 rlAniTitleDescription.startAnimation(slideDown);
+//                 rlAniTitleDescription.setVisibility(View.GONE);
+
+//                 rlFullDescription.startAnimation(slideDown);
+//                 rlFullDescription.setVisibility(View.GONE);
+//             }
+//         }
+//     }
 }
