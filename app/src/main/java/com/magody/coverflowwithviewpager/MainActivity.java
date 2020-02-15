@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
 
 import com.magody.coverflowwithviewpager.model.Product;
 import com.magody.coverflowwithviewpager.model.coverflow.FlowPageViewAdapter;
@@ -23,7 +26,8 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements UpdateMonth{
 
     public final static int LOOPS = 10; //this allow the ciclic interaction, so in this way the last element is conected with the first one
-
+    private String TAG = "ExoPlayerActivity";
+    private String KEY_VIDEO_URI = "video_uri";
     //LOOPS should be 1 when the list should only be seen once, otherwise it should be N if the list should be viewed N times
     //if LOOPS is 1, then the first page should be the middle of the size for esthetic and good presentation
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
     public FlowPageViewAdapter adapter;
 
     public ViewPager pager;
+    public Button image;
     RecyclerView horizontal_recycler_month, horizontal_recycler_year;
     HashMap<String,List<CategoryModel>> listHashMap;
     List<Product> productList;
@@ -51,6 +56,17 @@ public class MainActivity extends AppCompatActivity implements UpdateMonth{
         setContentView(R.layout.activity_main);
 
         pager = findViewById(R.id.mainViewPager);
+        image = findViewById(R.id.media);
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(getBaseContext(), ExoPlayerActivity.class);
+                intent.putExtra(KEY_VIDEO_URI, VideoPlayerConfig.DEFAULT_VIDEO_URL);
+                 startActivity(intent);
+            }
+        });
 
         //set page margin between pages for viewpager
         DisplayMetrics metrics = new DisplayMetrics();
